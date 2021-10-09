@@ -15,6 +15,9 @@ Public Class frmggg
     Private Industries_Factories() As Factories_Industries
     Private nIF As Integer
 
+    Private FS As FileStream
+    Private BF As BinaryFormatter
+    Private File As String = "Industries.txt"
     'Private Sub Cause(nCauses As Integer)
     '    Dim Causes() As Cause
     '    nCauses = CInt(InputBox("Please enter the number of causes that lead to deforestation."))
@@ -99,6 +102,7 @@ Public Class frmggg
                     objGHG.CarbonDioxide(d) = CDbl(InputBox("What were the Carbon Dioxide emissions by the factory/industry " & Name & " in  decade " & d & "?" & "(Please enter your response as a percentage)"))
                     objGHG.Methane(d) = CDbl(InputBox("What were the Methan emissions by the factory/industry " & Name & " in  decade " & d & "?" & "(Please enter your response as a percentage)"))
                     objGHG.NitrousOxide(d) = CDbl(InputBox("What were the Nitrous Oxide emissions by the factory/industry " & Name & " in  decade " & d & "?" & "(Please enter your response as a percentage)"))
+                     objGHG.OtherGases(d) = CDbl(InputBox("What were the emissions of OtherGases by the factory/industry " & Name & " in  decade " & d & "?" & "(Please enter your response as a percentage)"))
                 Next d
 
                 Industries_Factories(nIF) = objGHG
@@ -126,5 +130,25 @@ Public Class frmggg
                 Industries_Factories(nIF) = waterpollution
         End Select
     End Sub
+
+  'Display information
+    Private Sub btndisplay_Click(sender As Object, e As EventArgs) Handles btndisplay.Click
+        For i As Integer = 1 To nIF
+            txtdisplay.Text &= Industries_Factories(i).Display & Environment.NewLine
+        Next
+    End Sub
+
+    'Save Objects to files
+    Private Sub btnsavetofile_Click(sender As Object, e As EventArgs) Handles btnsavetofile.Click
+        FS = New FileStream(File, FileMode.Create, FileAccess.Write)
+        BF = New binaryformatter()
+
+        For i As Integer = 1 To nIF
+            BF.serialize(FS, Industries_Factories(i))
+        Next i
+        FS.Close()
+        MsgBox("All objects saved")
+    End Sub
+
 
 End Class
