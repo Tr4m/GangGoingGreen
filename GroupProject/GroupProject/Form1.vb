@@ -74,6 +74,7 @@ Public Class frmggg
                     objGHG.CarbonDioxide(d) = CDbl(InputBox("What were the Carbon Dioxide emissions by the factory/industry " & Name & " in  decade " & d & "?" & "(Please enter your response as a percentage)"))
                     objGHG.Methane(d) = CDbl(InputBox("What were the Methan emissions by the factory/industry " & Name & " in  decade " & d & "?" & "(Please enter your response as a percentage)"))
                     objGHG.NitrousOxide(d) = CDbl(InputBox("What were the Nitrous Oxide emissions by the factory/industry " & Name & " in  decade " & d & "?" & "(Please enter your response as a percentage)"))
+         objGHG.OtherGases(d) = CDbl(InputBox("What were the emissions of OtherGases by the factory/industry " & Name & " in  decade " & d & "?" & "(Please enter your response as a percentage)"))
                 Next d
                 Cause()
                 Industries_Factories(nIF) = objGHG
